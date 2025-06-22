@@ -9,7 +9,7 @@
   <br />
   <a href="#"><strong>NPM package →</strong></a>
   |
-  <a href="(https://its-a-bit-random.github.io/QueR"><strong>Docs →</strong></a>
+  <a href="https://its-a-bit-random.github.io/QueR"><strong>Docs →</strong></a>
 </p>
 
 
