@@ -36,5 +36,8 @@
     "roblox-ts": "^3.0.0",
     "typescript": "^5.8.3",
     "vitepress": "^1.6.3"
+  },
+  "dependencies": {
+    "@rbxts/services": "^1.5.5"
   }
 }
