@@ -4,6 +4,7 @@ import { defineConfig } from "vitepress";
 export default defineConfig({
 	title: "QueR",
 	description: "Lightweight batching utility for Roblox-TS",
+	base: "/QueR/",
 	themeConfig: {
 		// https://vitepress.dev/reference/default-theme-config
 		nav: [{ text: "Home", link: "/" }],
