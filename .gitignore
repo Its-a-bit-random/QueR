@@ -1,10 +1,20 @@
+# Lib ignores
 Lib/node_modules/
 Lib/out/
 Lib/include/
 
+# Test Project ignores
 TestProject/include/
 TestProject/node_modules/
 TestProject/out/
 
+# Docs ignore
+docs/.vitepress/cache/
+docs/.vitepress/dist/
+
+# Root ignores
+node_modules/
+
+# Global file type ignores
 *.tsbuildinfo
 *.DS_Store

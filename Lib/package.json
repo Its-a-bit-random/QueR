@@ -6,10 +6,7 @@
   "scripts": {
     "build": "rbxtsc",
     "watch": "rbxtsc -w",
-    "prepublishOnly": "npm run build",
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "prepublishOnly": "npm run build"
   },
   "keywords": [],
   "author": "",
@@ -35,7 +32,6 @@
     "prettier": "^3.5.3",
     "roblox-ts": "^3.0.0",
     "typescript": "^5.8.3",
-    "vitepress": "^1.6.3"
   },
   "dependencies": {
     "@rbxts/services": "^1.5.5"
