@@ -8,6 +8,8 @@
   Lightweight batching utility for Roblox-TS that queues tasks and processes them at fixed intervals for optimized execution.
   <br />
   <a href="#"><strong>NPM package →</strong></a>
+  |
+  <a href="(https://its-a-bit-random.github.io/QueR"><strong>Docs →</strong></a>
 </p>
 
 
