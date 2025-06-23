@@ -11,7 +11,16 @@ const enum FlushType {
  * invoking remote functions/events.
  */
 export default class QueR<T extends defined> {
+	/**
+	 * Has all the different types of flush intervals you can use
+	 * Some require you to call .Destory() when done using the QueR.
+	 * Make sure to check if you need to destory the QueR when done.
+	 */
 	public static FlushType = {
+		/**
+		 * Flush all tasks every {seconds} seconds. This flush interval REQUIRES
+		 * you to manually call .Destory() when done with the QueR
+		 */
 		Seconds: (seconds: number) => ({ Type: FlushType.Seconds, Value: seconds }),
 	};
 
@@ -48,10 +57,6 @@ export default class QueR<T extends defined> {
 		this.m_Tasks = new Array<T>();
 	}
 
-	/**
-	 * @param {number} flushInterval - How often the QueR should flush in seconds
-	 * @param {(data: Array<T>) => void} handler - Handler function called on each flush
-	 */
 	constructor(flushInterval: ReturnType<typeof QueR.FlushType.Seconds>, handler: (data: Array<T>) => void) {
 		this.m_FlushInterval = flushInterval;
 		this.m_Handler = handler;
