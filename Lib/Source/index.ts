@@ -2,6 +2,7 @@ import { RunService } from "@rbxts/services";
 
 const enum FlushIntervalType {
 	Seconds,
+	Frames,
 }
 
 interface FlushType {
@@ -27,6 +28,7 @@ export default class QueR<T extends defined> {
 		 * you to manually call .Destory() when done with the QueR
 		 */
 		Seconds: (seconds: number) => ({ Type: FlushIntervalType.Seconds, Value: seconds }),
+		Frames: (frames: number) => ({ Type: FlushIntervalType.Frames, Value: frames }),
 	};
 
 	private m_FlushInterval;
@@ -69,6 +71,15 @@ export default class QueR<T extends defined> {
 		if (flushInterval.Type === FlushIntervalType.Seconds) {
 			this.m_Connection = RunService.Heartbeat.Connect((deltaTime) => {
 				this.m_RunningTime += deltaTime;
+
+				if (this.m_RunningTime >= this.m_FlushInterval.Value) {
+					this.m_RunningTime = 0;
+					this.Flush();
+				}
+			});
+		} else if (flushInterval.Type === FlushIntervalType.Frames) {
+			this.m_Connection = RunService.Heartbeat.Connect(() => {
+				this.m_RunningTime += 1;
 
 				if (this.m_RunningTime >= this.m_FlushInterval.Value) {
 					this.m_RunningTime = 0;

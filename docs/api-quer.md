@@ -21,7 +21,8 @@ A static which describes each type of flushing you can use. The table below desc
 
 | **FlushType** | **Behaviour** | **Requires Destroy** |
 |---------------|---------------|----------------------|
-| `Seconds(x)`     | Flushes every x seconds. | ❌     |
+| `Seconds(x)`  | Flushes every x seconds. | ✅        |
+| `Frames(x)`   | Flushes every x frames.  | ✅        |
 
 ## Add
 ```ts
