@@ -1,7 +1,12 @@
 import { RunService } from "@rbxts/services";
 
-const enum FlushType {
+const enum FlushIntervalType {
 	Seconds,
+}
+
+interface FlushType {
+	Type: FlushIntervalType;
+	Value: number;
 }
 
 /**
@@ -21,7 +26,7 @@ export default class QueR<T extends defined> {
 		 * Flush all tasks every {seconds} seconds. This flush interval REQUIRES
 		 * you to manually call .Destory() when done with the QueR
 		 */
-		Seconds: (seconds: number) => ({ Type: FlushType.Seconds, Value: seconds }),
+		Seconds: (seconds: number) => ({ Type: FlushIntervalType.Seconds, Value: seconds }),
 	};
 
 	private m_FlushInterval;
@@ -57,11 +62,11 @@ export default class QueR<T extends defined> {
 		this.m_Tasks = new Array<T>();
 	}
 
-	constructor(flushInterval: ReturnType<typeof QueR.FlushType.Seconds>, handler: (data: Array<T>) => void) {
+	constructor(flushInterval: FlushType, handler: (data: Array<T>) => void) {
 		this.m_FlushInterval = flushInterval;
 		this.m_Handler = handler;
 
-		if (flushInterval.Type === FlushType.Seconds) {
+		if (flushInterval.Type === FlushIntervalType.Seconds) {
 			this.m_Connection = RunService.Heartbeat.Connect((deltaTime) => {
 				this.m_RunningTime += deltaTime;
 
