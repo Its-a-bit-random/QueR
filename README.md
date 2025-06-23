@@ -24,7 +24,7 @@ npm i @rbxts-its-a-bit-random/quer
 Then add @rbxts-its-a-bit-random to your rojo project:
 ```json
 "ReplicatedStorage": {
-    "$className": "ReplicatedStorage",
+	"$className": "ReplicatedStorage",
 	"rbxts_include": {
 		"$path": "include",
 		"node_modules": {
