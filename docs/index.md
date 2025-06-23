@@ -12,6 +12,6 @@ hero:
       link: /GettingStarted
     - theme: alt
       text: API
-      link: /api
+      link: /api-quer
 ---
 
