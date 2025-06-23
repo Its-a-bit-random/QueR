@@ -15,7 +15,7 @@
   "types": "out/index.d.ts",
   "files": [
     "out",
-    "../LICENSE",
+    "LICENSE",
     "!**/*.tsbuildinfo"
   ],
   "repository": {
