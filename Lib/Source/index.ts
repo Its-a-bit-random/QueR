@@ -1,5 +1,9 @@
 import { RunService } from "@rbxts/services";
 
+const enum FlushType {
+	Seconds,
+}
+
 /**
  * A QueR acts like a queue for your tasks. It stores
  * all the tasks you give it and then act upon them every
@@ -7,8 +11,12 @@ import { RunService } from "@rbxts/services";
  * invoking remote functions/events.
  */
 export default class QueR<T extends defined> {
+	public static FlushType = {
+		Seconds: (seconds: number) => ({ Type: FlushType.Seconds, Value: seconds }),
+	};
+
 	private m_FlushInterval;
-	private m_Connection;
+	private m_Connection: RBXScriptConnection | undefined;
 	private m_Handler;
 
 	private m_RunningTime = 0;
@@ -22,7 +30,7 @@ export default class QueR<T extends defined> {
 	 * future tasks from being added
 	 */
 	public Destroy() {
-		this.m_Connection.Disconnect();
+		this.m_Connection?.Disconnect();
 		this.Flush();
 		this.m_Destroyed = true;
 	}
@@ -40,21 +48,23 @@ export default class QueR<T extends defined> {
 		this.m_Tasks = new Array<T>();
 	}
 
-  /**
-   * @param {number} flushInterval - How often the QueR should flush in seconds
-   * @param {(data: Array<T>) => void} handler - Handler function called on each flush
-   */
-	constructor(flushInterval: number, handler: (data: Array<T>) => void) {
+	/**
+	 * @param {number} flushInterval - How often the QueR should flush in seconds
+	 * @param {(data: Array<T>) => void} handler - Handler function called on each flush
+	 */
+	constructor(flushInterval: ReturnType<typeof QueR.FlushType.Seconds>, handler: (data: Array<T>) => void) {
 		this.m_FlushInterval = flushInterval;
 		this.m_Handler = handler;
 
-		this.m_Connection = RunService.Heartbeat.Connect((deltaTime) => {
-			this.m_RunningTime += deltaTime;
+		if (flushInterval.Type === FlushType.Seconds) {
+			this.m_Connection = RunService.Heartbeat.Connect((deltaTime) => {
+				this.m_RunningTime += deltaTime;
 
-			if (this.m_RunningTime >= this.m_FlushInterval) {
-				this.m_RunningTime = 0;
-				this.Flush();
-			}
-		});
+				if (this.m_RunningTime >= this.m_FlushInterval.Value) {
+					this.m_RunningTime = 0;
+					this.Flush();
+				}
+			});
+		}
 	}
 }
