@@ -1,6 +1,6 @@
 {
   "name": "@rbxts-its-a-bit-random/quer",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Lightweight batching utility for Roblox-TS that queues tasks and processes them at fixed intervals for optimized execution.",
   "main": "out/init.lua",
   "scripts": {
