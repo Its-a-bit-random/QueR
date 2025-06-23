@@ -10,11 +10,12 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "type": "commonjs",
   "types": "out/index.d.ts",
   "files": [
     "out",
+    "../LICENSE",
     "!**/*.tsbuildinfo"
   ],
   "repository": {
