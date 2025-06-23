@@ -14,7 +14,7 @@
 
 
 
-# Installation
+## Installation
 
 Add to your `package.json`:
 ```bash
@@ -40,5 +40,23 @@ Then add @rbxts-its-a-bit-random to your rojo project:
 	"TS": {
 		"$path": "out/shared"
 	}
+}
+```
+
+## Basic exmaple
+
+This example shows how to batch printing numbers. It prints the numbers every 3 seconds.
+```ts
+import QueR from "@rbxts-its-a-bit-random/QueR";
+
+const queue = new QueR<number>(QueR.FlushType.Seconds(3), (numbers) => {
+	numbers.map((num) => {
+		print(num);
+	});
+});
+
+while (true) {
+	task.wait(0.1);
+	queue.Add(math.random(1, 10));
 }
 ```
