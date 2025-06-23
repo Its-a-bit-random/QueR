@@ -2,7 +2,7 @@
 	<img width="150" height="150" src="https://raw.githubusercontent.com/Its-a-bit-random/Quer/main/Images/Icon.png" alt="Logo">
 </p>
 
-<h1 align="center"><b>Quer</b></h1>
+<h1 align="center"><b>QueR</b></h1>
 
 <p align="center">
   Lightweight batching utility for Roblox-TS that queues tasks and processes them at fixed intervals for optimized execution.
@@ -32,9 +32,9 @@ Then add @rbxts-its-a-bit-random to your rojo project:
 			"@rbxts": {
 				"$path": "node_modules/@rbxts"
 			},
-            "@rbxts-its-a-bit-random": {
-                "$path": "node_modules/@rbxts-its-a-bit-random"
-            }
+            		"@rbxts-its-a-bit-random": {
+				"$path": "node_modules/@rbxts-its-a-bit-random"
+            		}
 		}
 	},
 	"TS": {
