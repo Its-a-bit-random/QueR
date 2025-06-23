@@ -23,7 +23,7 @@ A static which describes each type of flushing you can use. The table below desc
 |---------------|---------------|----------------------|
 | `Seconds(x)`  | Flushes every x seconds.         | ✅ |
 | `Frames(x)`   | Flushes every x frames.          | ✅ |
-| `Deffered`    | Flush at the end of every frame  | ❌ |
+| `Deferred`    | Flush at the end of every frame  | ❌ |
 
 ## Add
 ```ts

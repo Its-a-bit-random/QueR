@@ -3,7 +3,7 @@ import { RunService } from "@rbxts/services";
 const enum FlushIntervalType {
 	Seconds,
 	Frames,
-	Deffered,
+	Deferred,
 }
 
 interface FlushType {
@@ -39,7 +39,7 @@ export default class QueR<T extends defined> {
 		/**
 		 * Flush after every frame. Does NOT need .Destroy() to be called
 		 */
-		Deffered: () => ({ Type: FlushIntervalType.Deffered, Value: 0 }),
+		Deferred: () => ({ Type: FlushIntervalType.Deferred, Value: 0 }),
 	};
 
 	private m_FlushInterval;
@@ -70,11 +70,13 @@ export default class QueR<T extends defined> {
 	public Add(item: T) {
 		this.m_Tasks.push(item);
 
-		if (this.m_Scheduled === undefined) {
-			this.m_Scheduled = task.defer(() => {
-				this.Flush();
-				this.m_Scheduled = undefined;
-			});
+		if (this.m_FlushInterval.Type === FlushIntervalType.Deferred) {
+			if (this.m_Scheduled === undefined) {
+				this.m_Scheduled = task.defer(() => {
+					this.Flush();
+					this.m_Scheduled = undefined;
+				});
+			}
 		}
 	}
 
