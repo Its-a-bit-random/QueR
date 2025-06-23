@@ -3,7 +3,7 @@ import { makeHello } from "shared/module";
 
 print(makeHello("main.server.ts"));
 
-const qeue = new QueR<number>(1, (numbers) => {
+const qeue = new QueR<number>(QueR.FlushType.Seconds(3), (numbers) => {
 	numbers.map((num) => {
 		print(num);
 	});

@@ -2,19 +2,28 @@
 
 ## QueR
 ```ts
-new QueR<T>(interval: number, handler: (data: Array<T>) => void) => QueR
+new QueR<T>(interval: FlushType, handler: (data: Array<T>) => void) => QueR
 ```
 
 Create a new QueR instance, QueR class is generic and should be typed. The handler function is called with an array of all the added tasks from the last flush.
 
 | **Paramater**    | **Type**     | **Description**                          |
 |------------------|--------------|------------------------------------------|
-| `interval`    | `number`     | Time in seconds between each flush        |
+| `interval`    | `FlushType`     | Use the [.FlushType](#flushtype) static field to fill this        |
 | `handler` | `(data: Array<T>) => void` | The handler function that gets called each time the QueR is flushed. |
 
-:::danger
-You **MUST** call destory on QueR object when your done with them. Otherwise a **memory leak will be caused!**
-:::
+## FlushType
+#### Since `2.0.0`
+```ts
+.FlushType.X<T>(Y: T) => {Type: number, Value: number}
+```
+A static which describes each type of flushing you can use. The table below describes all FlushTypes, their behaviour and if you need to use .Destroy().
+
+| **FlushType** | **Behaviour** | **Requires Destroy** |
+|---------------|---------------|----------------------|
+| `Seconds(x)`  | Flushes every x seconds.         | ✅ |
+| `Frames(x)`   | Flushes every x frames.          | ✅ |
+| `Deferred`    | Flush at the end of every frame  | ❌ |
 
 ## Add
 ```ts
@@ -32,8 +41,8 @@ Add a new item to the QueR.
 .Destroy()
 ```
 
-:::warning
-This method might be removed in the future. However for now the Destroy method must be called when your done with a QueR object.
+:::info
+Destroy is not always required. Make sure to check if your [FlushType](#flushtype) requires destroy
 :::
 
 Forces the QueR to flush and disconnect the internal Heartbeat connection. This also prevents new items being added to the QueR
