@@ -12,6 +12,10 @@ Create a new QueR instance, QueR class is generic and should be typed. The handl
 | `interval`    | `number`     | Time in seconds between each flush        |
 | `handler` | `(data: Array<T>) => void` | The handler function that gets called each time the QueR is flushed. |
 
+:::danger
+You **MUST** call destory on QueR object when your done with them. Otherwise a **memory leak will be caused!**
+:::
+
 ## Add
 ```ts
 .Add(item: T) => void
@@ -29,7 +33,7 @@ Add a new item to the QueR.
 ```
 
 :::warning
-This is a temporary function for now and **MIGHT be removed in the future**
+This method might be removed in the future. However for now the Destroy method must be called when your done with a QueR object.
 :::
 
 Forces the QueR to flush and disconnect the internal Heartbeat connection. This also prevents new items being added to the QueR

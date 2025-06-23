@@ -16,4 +16,29 @@
 
 # Installation
 
-🏗️ Under construction
+Add to your `package.json`:
+```bash
+npm i @rbxts-its-a-bit-random/quer
+```
+
+Then add @rbxts-its-a-bit-random to your rojo project:
+```json
+"ReplicatedStorage": {
+    "$className": "ReplicatedStorage",
+	"rbxts_include": {
+		"$path": "include",
+		"node_modules": {
+			"$className": "Folder",
+			"@rbxts": {
+				"$path": "node_modules/@rbxts"
+			},
+            "@rbxts-its-a-bit-random": {
+                "$path": "node_modules/@rbxts-its-a-bit-random"
+            }
+		}
+	},
+	"TS": {
+		"$path": "out/shared"
+	}
+}
+```
