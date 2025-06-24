@@ -7,7 +7,10 @@ export default defineConfig({
   base: "/QueR/",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
-    nav: [{ text: "Home", link: "/" }],
+    nav: [
+      { text: "Home", link: "/" },
+      { text: "Changelog", link: "/CHANGELOG" },
+    ],
 
     sidebar: [
       {
@@ -19,7 +22,10 @@ export default defineConfig({
       },
       {
         text: "API",
-        items: [{ text: "QueR", link: "/api-quer" }],
+        items: [
+          { text: "Changelog", link: "/CHANGELOG" },
+          { text: "QueR", link: "/api-quer" },
+        ],
       },
     ],
 
